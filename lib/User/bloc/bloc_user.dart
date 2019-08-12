@@ -7,16 +7,22 @@ class UserBloc implements Bloc {
 
   /// Flujo de datos - Streams
   /// Stream - Firebase
-  /// StreamController FirebaseUser
+  /// StreamController FirebaseUser (sirve para monitorear el estado de la session)
   Stream<FirebaseUser> streamFirebase = FirebaseAuth.instance.onAuthStateChanged;
 
   /// Retornando el estado de la autenticación
   Stream<FirebaseUser> get authStatus => streamFirebase;
 
   /// Casos uso
+
   /// 1. Sign In a la aplicacion
   Future<FirebaseUser> signIn() {
     return _authRepository.signInFirebase();
+  }
+
+  /// 2. Sign Out de la aplicacion
+  signOut() {
+    _authRepository.signOutFirebase();
   }
 
   @override

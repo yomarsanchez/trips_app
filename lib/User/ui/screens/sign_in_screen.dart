@@ -24,10 +24,14 @@ class _SignInScreen extends State<SignInScreen> {
   }
 
   Widget _handleCurrentSession() {
+    print('--- authStatus ---');
+    print(userBloc.authStatus);
+    print('--- authStatus ---');
     return StreamBuilder(
       stream: userBloc.authStatus,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         /// @var snapshot - contiene Object User
+        /// Validando el estado de session
         if (!snapshot.hasData || snapshot.hasError) {
           return signInGoogleUI();
         } else {
@@ -62,7 +66,11 @@ class _SignInScreen extends State<SignInScreen> {
                 text: "Login width Gmail",
                 onPressed: () {
                   userBloc.signIn()
-                  .then((FirebaseUser user) => print(user));
+                  .then((FirebaseUser user) {
+                    print('--LOGIN RESPONSE--');
+                    print(user);
+                    print('--LOGIN RESPONSE--');
+                  });
                 },
                 width: 300.0,
                 height: 50.0,
@@ -73,4 +81,5 @@ class _SignInScreen extends State<SignInScreen> {
       ),
     );
   }
+
 }

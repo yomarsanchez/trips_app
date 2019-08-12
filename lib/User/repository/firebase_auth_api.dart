@@ -11,6 +11,7 @@ class FirebaseAuthAPI {
     /// Obteneindo credenciales
     final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
+    /// Preparando credenciales de autenticación
     final AuthCredential credential = GoogleAuthProvider.getCredential(
       idToken: googleAuth.idToken,
       accessToken: googleAuth.accessToken,
@@ -20,4 +21,17 @@ class FirebaseAuthAPI {
 
     return user;
   }
+
+  signOut() async {
+    await _auth.signOut()
+      .then((onValue) {
+        print("Session cerrada de Firebase");
+      });
+
+    _googleSignIn.signOut()
+      .then((onValue) {
+        print("Session cerrada de Gogle");
+      });
+  }
+
 }
