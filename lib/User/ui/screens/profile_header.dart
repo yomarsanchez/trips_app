@@ -69,9 +69,10 @@ class ProfileHeader extends StatelessWidget {
 
       /// User Information
       user = User(
+        uid: snapshot.data.uid,
         name: snapshot.data.displayName,
         email: snapshot.data.email,
-        photo: snapshot.data.photoUrl
+        photoURL: snapshot.data.photoUrl
       );
 
       return Container(

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:trips_app/User/bloc/bloc_user.dart';
+import 'package:trips_app/User/model/user.dart';
 import 'package:trips_app/platzi_trips_cupertino.dart';
 import 'package:trips_app/widgets/button_green.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
@@ -65,8 +66,14 @@ class _SignInScreen extends State<SignInScreen> {
                   userBloc.signOut();
                   userBloc.signIn()
                   .then((FirebaseUser user) {
-                    print('-------- LOGIN RESPONSE --------');
-                    print(user);
+                    /// -------- LOGIN RESPONSE --------
+                    /// Update data
+                    userBloc.updateUserData(User(
+                      uid: user.uid,
+                      name: user.displayName,
+                      email: user.email,
+                      photoURL: user.photoUrl
+                    ));
                   });
                 },
                 width: 300.0,

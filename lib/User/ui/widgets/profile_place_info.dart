@@ -29,7 +29,7 @@ class ProfilePlaceInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            this.place.where,
+            this.place.description,
             style: TextStyle(
               color: Color.fromRGBO(0, 0, 0, 0.4),
               fontFamily: 'Lato',
@@ -51,7 +51,7 @@ class ProfilePlaceInfo extends StatelessWidget {
     );
 
     final steps = Text(
-      'Steps ${this.place.steps}',
+      'Hearts ${this.place.likes.toString()}',
       style: TextStyle(
         fontFamily: 'Lato',
         fontSize: 14.0,

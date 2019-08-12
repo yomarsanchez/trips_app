@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:trips_app/Place/model/place.dart';
 import 'profile_place_info.dart';
-import 'profile_place.dart';
 
 class ProfilePlace extends StatelessWidget {
-
-  String image;
   Place place;
 
-  ProfilePlace(this.image, this.place);
+  ProfilePlace(this.place);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +19,8 @@ class ProfilePlace extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(image)
+          // image: AssetImage(image)
+          image: NetworkImage(this.place.image)
         ),
         borderRadius: BorderRadius.all(Radius.circular(20.0)),
         color: Colors.red,
