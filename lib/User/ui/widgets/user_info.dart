@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:trips_app/User/model/user.dart';
 
 class UserInfo extends StatelessWidget {
+  User user;
 
-  String imgProfile;
-  String name;
-  String email;
-
-  UserInfo(this.imgProfile, this.name, this.email);
+  UserInfo({
+    @required this.user
+  });
 
   @override
   Widget build(BuildContext context) {
-
     final userPhoto = Container(
       width: 90.0,
       height: 90.0,
@@ -26,7 +25,8 @@ class UserInfo extends StatelessWidget {
         shape: BoxShape.circle,
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(imgProfile)
+          // image: AssetImage(user.photo)
+          image: NetworkImage(user.photo)
         )
       ),
     );
@@ -36,10 +36,10 @@ class UserInfo extends StatelessWidget {
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(
-              bottom: 5.0
+            bottom: 5.0
           ),
           child: Text(
-            name,
+            user.name,
             style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class UserInfo extends StatelessWidget {
           )
         ),
         Text(
-          email,
+          user.email,
           style: TextStyle(
             fontSize: 15.0,
             color: Colors.white30,

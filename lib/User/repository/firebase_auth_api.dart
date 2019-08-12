@@ -8,18 +8,21 @@ class FirebaseAuthAPI {
   Future<FirebaseUser> signIn() async {
     /// Solicitando view login
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    /// Obteneindo credenciales
-    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    if (googleUser != null) {
+      /// Obteneindo credenciales
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      /// Preparando credenciales de autenticación
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+        idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
+      );
 
-    /// Preparando credenciales de autenticación
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      idToken: googleAuth.idToken,
-      accessToken: googleAuth.accessToken,
-    );
+      final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
 
-    final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
+      return user != null ? user : null;
+    }
 
-    return user;
+    return null;
   }
 
   signOut() async {

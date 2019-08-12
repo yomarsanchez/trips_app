@@ -24,9 +24,6 @@ class _SignInScreen extends State<SignInScreen> {
   }
 
   Widget _handleCurrentSession() {
-    print('--- authStatus ---');
-    print(userBloc.authStatus);
-    print('--- authStatus ---');
     return StreamBuilder(
       stream: userBloc.authStatus,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -65,11 +62,11 @@ class _SignInScreen extends State<SignInScreen> {
               ButtonGreen(
                 text: "Login width Gmail",
                 onPressed: () {
+                  userBloc.signOut();
                   userBloc.signIn()
                   .then((FirebaseUser user) {
-                    print('--LOGIN RESPONSE--');
+                    print('-------- LOGIN RESPONSE --------');
                     print(user);
-                    print('--LOGIN RESPONSE--');
                   });
                 },
                 width: 300.0,
