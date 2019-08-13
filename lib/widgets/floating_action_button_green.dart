@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 class FloatingActionButtonGreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _FloatingActionButtonGreen();
-  }
+  State<StatefulWidget> createState() => _FloatingActionButtonGreen();
 
 }
 
@@ -28,6 +26,7 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
       child: Icon(
         Icons.favorite_border
       ),
+      heroTag: null,
     );
   }
 

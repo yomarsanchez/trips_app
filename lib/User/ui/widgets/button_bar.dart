@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:trips_app/Place/ui/screens/add_place_screen.dart';
 import 'package:trips_app/User/bloc/bloc_user.dart';
 import 'circle_button.dart';
 
@@ -9,6 +11,7 @@ class ButtonsBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of(context);
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 0.0,
@@ -36,7 +39,12 @@ class ButtonsBar extends StatelessWidget {
             icon: Icons.add,
             color: Color.fromRGBO(255, 255, 255, 1),
             iconSize: 40.0,
-            onPressed: () {},
+            onPressed: () {
+              File image;
+              Navigator.push(context, MaterialPageRoute(
+                builder: (BuildContext context) => AddPlaceScreen( image: image ),
+              ));
+            },
           ),
           CircleButton(
             icon: Icons.mail_outline,
