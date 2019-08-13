@@ -6,6 +6,7 @@ import 'package:trips_app/User/repository/cloud_firestore_repository.dart';
 
 class UserBloc implements Bloc {
   final _authRepository = AuthRepository();
+  final _cloudFirestoreRepository = CloudFirestoreRepository();
 
   /// Flujo de datos - Streams
   /// Stream - Firebase
@@ -15,22 +16,16 @@ class UserBloc implements Bloc {
   /// Retornando el estado de la autenticación
   Stream<FirebaseUser> get authStatus => streamFirebase;
 
-  /// Casos uso
+  /// CASOS DE USO
 
   /// 1. Sign In a la aplicacion
-  Future<FirebaseUser> signIn() {
-    return _authRepository.signInFirebase();
-  }
+  Future<FirebaseUser> signIn() => _authRepository.signInFirebase();
 
   /// 2. Registrar usuario en base de datos
-  final _cloudFirestoreRepository = CloudFirestoreRepository();
-
   void updateUserData(User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
 
-  /// Sign Out de la aplicacion
-  signOut() {
-    _authRepository.signOutFirebase();
-  }
+  /// Sign Out de la aplicación
+  signOut() => _authRepository.signOutFirebase();
 
   @override
   void dispose() {

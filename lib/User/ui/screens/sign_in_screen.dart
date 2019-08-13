@@ -8,6 +8,8 @@ import 'package:trips_app/widgets/button_green.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
 
 class SignInScreen extends StatefulWidget {
+  final String title = "Welcome.\nThis is your Travel App";
+
   @override
   State<StatefulWidget> createState() {
     return _SignInScreen();
@@ -15,12 +17,13 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreen extends State<SignInScreen> {
-  String title = "Welcome.\nThis is your Travel App";
   UserBloc userBloc;
+  double screenWidth;
 
   @override
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of(context);
+    screenWidth = MediaQuery.of(context).size.width;
     return _handleCurrentSession();
   }
 
@@ -45,19 +48,27 @@ class _SignInScreen extends State<SignInScreen> {
         alignment: Alignment.center,
         children: <Widget>[
           GradientBack(
-            title: "",
             height: null,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                this.title,
-                style: TextStyle(
-                  fontSize: 37.0,
-                  fontFamily: "Lato",
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
+              Flexible(
+                child: Container(
+                  width: this.screenWidth,
+                  margin: EdgeInsets.only(
+                    left: 20.0,
+                    right: 20.0
+                  ),
+                  child: Text(
+                    widget.title,
+                    style: TextStyle(
+                      fontSize: 37.0,
+                      fontFamily: "Lato",
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
                 ),
               ),
               ButtonGreen(
@@ -66,8 +77,8 @@ class _SignInScreen extends State<SignInScreen> {
                   userBloc.signOut();
                   userBloc.signIn()
                   .then((FirebaseUser user) {
-                    /// -------- LOGIN RESPONSE --------
-                    /// Update data
+                    /// LOGIN RESPONSE
+                    /// Updating user data
                     userBloc.updateUserData(User(
                       uid: user.uid,
                       name: user.displayName,

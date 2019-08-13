@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Review extends StatelessWidget {
-
   String pathImage = "assets/img/people.jpg";
   String name = "Varuna Yasas";
   String details = "1 review · 5 photos";
@@ -14,15 +13,15 @@ class Review extends StatelessWidget {
 
     final userComment = Container(
       margin: EdgeInsets.only(
-          left: 20.0
+        left: 20.0
       ),
       child: Text(
         comment,
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontFamily: "Lato",
-            fontSize: 13.0,
-            fontWeight: FontWeight.w900
+          fontFamily: "Lato",
+          fontSize: 13.0,
+          fontWeight: FontWeight.w900
         ),
       ),
     );
@@ -35,8 +34,8 @@ class Review extends StatelessWidget {
         details,
         textAlign: TextAlign.left,
         style: TextStyle(
-            fontFamily: "Lato",
-            fontSize: 13.0,
+          fontFamily: "Lato",
+          fontSize: 13.0,
           color: Color(0xFFa3a5a7)
         ),
       ),
@@ -51,7 +50,7 @@ class Review extends StatelessWidget {
         textAlign: TextAlign.left,
         style: TextStyle(
           fontFamily: "Lato",
-            fontSize: 17.0
+          fontSize: 17.0
         ),
       ),
     );
@@ -75,8 +74,8 @@ class Review extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(pathImage)
+          fit: BoxFit.cover,
+          image: AssetImage(pathImage)
         )
       ),
     );
