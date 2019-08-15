@@ -1,8 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:trips_app/Place/model/place.dart';
 import 'package:trips_app/Place/ui/widgets/card_image_with_fab_icon.dart';
 import 'package:trips_app/Place/ui/widgets/text_input_location.dart';
+import 'package:trips_app/User/bloc/bloc_user.dart';
+import 'package:trips_app/widgets/button_purple.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
 import 'package:trips_app/widgets/text_input.dart';
 import 'package:trips_app/widgets/title_header.dart';
@@ -22,6 +26,7 @@ class AddPlaceScreen extends StatefulWidget {
 class _AddPlaceScreen extends State<AddPlaceScreen> {
   @override
   Widget build(BuildContext context) {
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     double screenHeight = MediaQuery.of(context).size.height;
     final _controllerTitlePlace = TextEditingController();
     final _controllerDescriptionPlace = TextEditingController();
@@ -121,7 +126,26 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                     controller: _controllerLocationPlace,
                     icon: MdiIcons.mapMarkerOutline,
                   ),
-                )
+                ),
+                /// Button Add Place
+                Container(
+                  width: 70.0,
+                  child: ButtonPurple(
+                    buttonText: "Add Place",
+                    onTap: () {
+                      /// PROCESOS
+                      /// 1. Upload image -> File Storage
+                      /// Url -Image
+
+                      /// 2. Cloud Firestore
+                      /// (Place -Title, Description, Url, UserOwner, Likes)
+
+                      userBloc.updatePlaceData(Place(
+
+                      ));
+                    },
+                  ),
+                ),
               ],
             ),
           )

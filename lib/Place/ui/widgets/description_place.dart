@@ -99,7 +99,18 @@ class DescriptionPlace extends StatelessWidget {
       children: <Widget>[
         title_stars,
         description,
-        ButtonPurple("Navigate")
+        ButtonPurple(
+          buttonText: "Navigate",
+          onTap: () {
+            print("Navegando");
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text("Navegando"),
+                elevation: 200.0
+              )
+            );
+          }
+        )
       ],
     );
   }
