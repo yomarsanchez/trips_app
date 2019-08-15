@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class TextInput extends StatelessWidget{
-  final String label;
-  final TextInputType inputType;
+class TextInput extends StatelessWidget {
+  final String placeholder;
+  final TextInputType type;
   final TextEditingController controller;
-  int maxLines = 1;
+  int maxLines;
 
   TextInput({
     Key key,
-    @required this.label,
-    @required this.inputType,
+    @required this.placeholder,
+    @required this.type,
     @required this.controller,
-    this.maxLines
+    this.maxLines = 1
   });
 
   @override
@@ -21,7 +21,31 @@ class TextInput extends StatelessWidget{
         left: 20.0,
         right: 20.0
       ),
-      child: Text(''),
+      child: TextField(
+        controller: this.controller,
+        keyboardType: this.type,
+        maxLines: this.maxLines,
+        style: TextStyle(
+          color: Colors.blueGrey,
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+          fontFamily: "Lato"
+        ),
+        decoration: InputDecoration(
+          filled: true,
+          hintText: this.placeholder,
+          fillColor: Color(0xFFE0E1E2),
+          border: InputBorder.none,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFE0E1E2)),
+            borderRadius: BorderRadius.all(Radius.circular(9.0))
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFE0E1E2)),
+            borderRadius: BorderRadius.all(Radius.circular(9.0))
+          )
+        ),
+      ),
     );
   }
 

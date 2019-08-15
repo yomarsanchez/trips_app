@@ -80,13 +80,12 @@ flutter:
     - assets/img/yomarsanchez.jpg
     - assets/img/people.jpg
     - assets/img/ann.jpg
-    - assets/img/girl.jpg
-    - assets/img/mountain.jpeg
-    - assets/img/beach.jpeg
-    - assets/img/beach_palm.jpeg
-    - assets/img/mountain_stars.jpeg
-    - assets/img/sunset.jpeg
-    - assets/img/river.jpeg
+    - assets/img/img-7.jpg
+    - assets/img/img-6.jpg
+    - assets/img/img-4.jpg
+    - assets/img/img-2.jpg
+    - assets/img/img-1.jpg
+
   fonts:
     - family: Lato
       fonts:
