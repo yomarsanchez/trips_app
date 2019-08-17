@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "744507391415-eic1g96erhlvor9qih5nfvldvpqqc6ce.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yomarsanchez.trips_app",
+            "certificate_hash": "bc3d6e4c52f344a44ccf1fda67e39a56ff55549b"
+          }
+        },
+        {
           "client_id": "744507391415-r08gkltpsgrtf5lc0rao4p6opg830dk1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

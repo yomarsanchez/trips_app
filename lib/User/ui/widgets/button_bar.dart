@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:trips_app/Place/ui/screens/add_place_screen.dart';
 import 'package:trips_app/User/bloc/bloc_user.dart';
-import 'circle_button.dart';
+import 'package:trips_app/User/ui/widgets/circle_button.dart';
 
 class ButtonsBar extends StatelessWidget {
   UserBloc userBloc;
@@ -34,16 +35,29 @@ class ButtonsBar extends StatelessWidget {
             onPressed: () {},
             isMiniIcon: true
           ),
-          /// Añadir un nuevo lugar
+          /// Añadir un nuevo lugar / Photo
           CircleButton(
             icon: Icons.add,
             color: Color.fromRGBO(255, 255, 255, 1),
             iconSize: 40.0,
             onPressed: () {
-              File image;
-              Navigator.push(context, MaterialPageRoute(
-                builder: (BuildContext context) => AddPlaceScreen( image: image ),
-              ));
+              /// Capturando imagen
+              ImagePicker.pickImage(
+                source: ImageSource.camera
+              )
+                .then((File image) {
+                  if (image != null) {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (BuildContext context) => AddPlaceScreen( image: image )
+                    ));
+                  } else {
+                    print('Error : Imagen no valida');
+                  }
+                })
+                .catchError((onError) {
+                  print('Error : Al intentar capturar imagen de la cámara');
+                  print(onError);
+                });
             },
           ),
           CircleButton(
