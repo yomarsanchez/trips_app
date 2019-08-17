@@ -24,7 +24,6 @@ class UserBloc implements Bloc {
 
   /// 2. Registrar usuario en base de datos
   void updateUserData(User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
-
   /// Update place data
   Future<void> updatePlaceData(Place place) => _cloudFirestoreRepository.updatePlaceData(place);
 

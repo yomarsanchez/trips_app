@@ -78,15 +78,16 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
           /// List View Body
           Container(
             margin: EdgeInsets.only(
-              top: 120.0,
+              top: 90.0,
               bottom: 20.0
             ),
             child: ListView(
               children: <Widget>[
-                /// Photo
+                /// Preview Picture
                 Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(
+                    top: 30.0,
                     left: 40.0,
                     right: 40.0,
                     bottom: 30.0
@@ -140,9 +141,17 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                       /// 2. Cloud Firestore
                       /// (Place -Title, Description, Url, UserOwner, Likes)
 
-                      userBloc.updatePlaceData(Place(
+                      print("Subiendo datos a Firestore de Firebase");
 
-                      ));
+                      userBloc.updatePlaceData(Place(
+                        name: _controllerTitlePlace.text,
+                        description: _controllerDescriptionPlace.text,
+                        type: "Scenery & Photography",
+                        image: ""
+                      )).whenComplete(() {
+                        print("Send Data To Firebase : FIN");
+                        Navigator.pop(context);
+                      });
                     },
                   ),
                 ),
