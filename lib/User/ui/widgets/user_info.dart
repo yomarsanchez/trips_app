@@ -1,11 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:trips_app/User/model/user.dart';
 
 class UserInfo extends StatelessWidget {
   User user;
+  bool isFromInternet;
 
   UserInfo({
-    @required this.user
+    @required this.user,
+    this.isFromInternet = true
   });
 
   @override
@@ -26,7 +29,7 @@ class UserInfo extends StatelessWidget {
         image: DecorationImage(
           fit: BoxFit.cover,
           // image: AssetImage(user.photo)
-          image: NetworkImage(user.photoURL)
+          image: this.isFromInternet ? CachedNetworkImageProvider(user.photoURL) : NetworkImage(user.photoURL)
         )
       ),
     );

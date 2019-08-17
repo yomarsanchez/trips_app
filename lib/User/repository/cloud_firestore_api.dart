@@ -34,9 +34,20 @@ class CloudFirestoreAPI {
       'description': place.description,
       'type': place.type,
       'likes': place.likes,
-      'userOwner': "${USERS.toString()}/${uid.toString()}",
+      'userOwner': _db.document("${USERS.toString()}/${uid.toString()}"),
       'urlImage': place.urlImage
-    });
-
+    })
+      .then((DocumentReference dr) {
+        dr.get()
+          .then((DocumentSnapshot snapshot) {
+            /// PLace Referencia Array to User
+            DocumentReference userRef = _db.collection(USERS).document(uid);
+            userRef.updateData({
+              'myPlaces': FieldValue.arrayUnion([
+                _db.document("${PLACES.toString()}/${snapshot.documentID}")
+              ])
+            });
+          });
+      });
   }
 }

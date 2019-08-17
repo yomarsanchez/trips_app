@@ -54,8 +54,8 @@ class ProfileHeader extends StatelessWidget {
       );
     } else {
       /// Login Success
-      // print('Login Success');
-      // print(snapshot.data);
+      print('Login Success');
+      print(snapshot.data);
 
       final title = Text(
         'Profile',

@@ -3,7 +3,6 @@ import 'package:trips_app/Place/model/place.dart';
 import 'package:trips_app/widgets/floating_action_button_green.dart';
 
 class ProfilePlaceInfo extends StatelessWidget {
-
   Place place;
 
   ProfilePlaceInfo(this.place);

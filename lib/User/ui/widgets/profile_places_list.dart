@@ -5,19 +5,27 @@ import 'profile_place.dart';
 class ProfilePlacesList extends StatelessWidget {
 
   Place place = Place(
-    name: 'Knuckles Mountains Range',
-    description: 'Hiking. Water fall hunting. Natural bath',
-    type: 'Scenery & Photography',
-    urlImage: 'https://images.unsplash.com/photo-1473603477862-9d352d4615e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80',
-    likes: 3
-  );
-
-  Place place2 = Place(
     name: 'Mountains',
     description: 'Hiking. Water fall hunting. Natural bath',
     type: 'Scenery & Photography',
     urlImage: 'https://images.unsplash.com/photo-1531065208531-4036c0dba3ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
     likes: 10
+  );
+
+  Place place1 = Place(
+    name: 'Knuckles Mountains Range',
+    description: 'Hiking. Water fall hunting. Natural bath',
+    type: 'Scenery & Photography',
+    urlImage: 'https://images.unsplash.com/photo-1560311144-602d9657890b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+    likes: 3
+  );
+
+  Place place2 = Place(
+    name: 'Knuckles Mountains Range',
+    description: 'Hiking. Water fall hunting. Natural bath',
+    type: 'Scenery & Photography',
+    urlImage: 'https://images.unsplash.com/photo-1473603477862-9d352d4615e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80',
+    likes: 3
   );
 
   Place place3 = new Place(
@@ -39,9 +47,10 @@ class ProfilePlacesList extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          ProfilePlace(place),
-          ProfilePlace(place2),
-          ProfilePlace(place3),
+          ProfilePlace( place: place ),
+          ProfilePlace( place: place1 ),
+          ProfilePlace( place: place2 ),
+          ProfilePlace( place: place3 ),
         ],
       ),
     );
