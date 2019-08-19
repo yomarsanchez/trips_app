@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:trips_app/widgets/floating_action_button_green.dart';
 
@@ -9,6 +10,7 @@ class CardImageWithFabIcon extends StatelessWidget {
   final VoidCallback onPressedTabIcon;
   double  left;
   bool isMiniIcon;
+  bool isFromInternet;
 
   CardImageWithFabIcon({
     Key key,
@@ -18,7 +20,8 @@ class CardImageWithFabIcon extends StatelessWidget {
     @required this.icon,
     @required this.onPressedTabIcon,
     this.left = 0.0,
-    this.isMiniIcon = true
+    this.isMiniIcon = true,
+    this.isFromInternet = true
   });
 
   @override
@@ -33,7 +36,7 @@ class CardImageWithFabIcon extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(this.image)
+          image: isFromInternet ? CachedNetworkImageProvider(this.image): AssetImage(this.image)
         ),
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         shape: BoxShape.rectangle,

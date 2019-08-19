@@ -1,43 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:trips_app/Place/model/place.dart';
-import 'profile_place.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:trips_app/User/bloc/bloc_user.dart';
+import 'package:trips_app/User/model/user.dart';
 
 class ProfilePlacesList extends StatelessWidget {
+  UserBloc userBloc;
+  User user;
 
-  Place place = Place(
-    name: 'Mountains',
-    description: 'Hiking. Water fall hunting. Natural bath',
-    type: 'Scenery & Photography',
-    urlImage: 'https://images.unsplash.com/photo-1531065208531-4036c0dba3ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
-    likes: 10
-  );
-
-  Place place1 = Place(
-    name: 'Knuckles Mountains Range',
-    description: 'Hiking. Water fall hunting. Natural bath',
-    type: 'Scenery & Photography',
-    urlImage: 'https://images.unsplash.com/photo-1560311144-602d9657890b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
-    likes: 3
-  );
-
-  Place place2 = Place(
-    name: 'Knuckles Mountains Range',
-    description: 'Hiking. Water fall hunting. Natural bath',
-    type: 'Scenery & Photography',
-    urlImage: 'https://images.unsplash.com/photo-1473603477862-9d352d4615e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80',
-    likes: 3
-  );
-
-  Place place3 = new Place(
-    name: 'Knuckles',
-    description: 'Hiking. Water fall hunting. Natural bath',
-    type: 'Scenery & Photography',
-    urlImage: 'https://images.unsplash.com/photo-1563373336-e8dd1e084c68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1296&q=80',
-    likes: 13
-  );
+  ProfilePlacesList({
+    @required this.user
+  });
 
   @override
   Widget build(BuildContext context) {
+    userBloc = BlocProvider.of<UserBloc>(context);
+
     return Container(
       margin: EdgeInsets.only(
         top: 10.0,
@@ -45,14 +22,27 @@ class ProfilePlacesList extends StatelessWidget {
         right: 20.0,
         bottom: 10.0
       ),
-      child: Column(
-        children: <Widget>[
-          ProfilePlace( place: place ),
-          ProfilePlace( place: place1 ),
-          ProfilePlace( place: place2 ),
-          ProfilePlace( place: place3 ),
-        ],
-      ),
+      child: StreamBuilder(
+        stream: userBloc.myPlacesStream(user.uid),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+            case ConnectionState.none:
+              return Container(
+                alignment: FractionalOffset.center,
+                child: CircularProgressIndicator(),
+              );
+              break;
+            case ConnectionState.active:
+            case ConnectionState.done:
+            default:
+              return Column(
+                children: userBloc.buildMyPlaces(snapshot.data.documents)
+              );
+              break;
+          }
+        },
+      )
     );
   }
 

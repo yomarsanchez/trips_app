@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:trips_app/User/bloc/bloc_user.dart';
 import 'package:trips_app/User/model/user.dart';
+import 'package:trips_app/platzi_trips.dart';
 import 'package:trips_app/platzi_trips_cupertino.dart';
 import 'package:trips_app/widgets/button_green.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
